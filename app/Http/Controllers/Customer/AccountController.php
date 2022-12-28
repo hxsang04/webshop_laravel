@@ -43,6 +43,13 @@ class AccountController extends Controller
         return view('customer.main.order', compact('categories','orders'));
     }
 
+    public function orderDetail($order_id){
+        $categories = $this->categoryService->getParent();
+        $order = Order::find($order_id);
+
+        return view('customer.main.orderDetail', compact('categories','order'));
+    }
+
     public function updateOrderStatus(Request $request){
         $this->accountService->updateOrderStatus($request);
     }
