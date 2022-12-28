@@ -36,7 +36,7 @@ class ProductDetailController extends Controller
 
         $this->productDetailService->store($request, $product_id);
 
-        $this->updateQuantity($product_id);
+        $this->productService->updateQuantity($product_id);
 
         return redirect('admin/product/'.$product_id.'/detail/create')
                             ->with('success', 'SUCCESS: New product detail was successfully added!');
@@ -52,7 +52,7 @@ class ProductDetailController extends Controller
 
         $this->productDetailService->update($request, $product_id, $productDetail_id);
 
-        $this->updateQuantity($product_id);
+        $this->productService->updateQuantity($product_id);
 
         return redirect('admin/product/'.$product_id.'/detail')
                         ->with('success', 'SUCCESS: Product detail was successfully edited!');
@@ -61,18 +61,10 @@ class ProductDetailController extends Controller
     public function destroy($product_id, $productDetail_id){
 
        $this->productDetailService->destroy($productDetail_id);
-       $this->updateQuantity($product_id);
+       $this->productService->updateQuantity($product_id);
 
        return back()->with('success', 'SUCCESS: Product detail was successfully deleted!');
         
     }
 
-    public function updateQuantity($product_id){
-        $product = $this->productService->find($product_id);
-        $productDetails = $product->productDetail;
-
-        $totalQuantity = array_sum(array_column($productDetails->toArray(), 'quantity'));
-
-        $this->productService->updateQuantity($totalQuantity, $product_id);
-    }
 }

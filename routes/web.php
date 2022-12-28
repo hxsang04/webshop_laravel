@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'index']);
     Route::post('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'update']);
     Route::get('/my-account/order', [App\Http\Controllers\Customer\AccountController::class, 'orderHistory']);
-    Route::post('/my-account/order/updateStatus', [App\Http\Controllers\Customer\AccountController::class, 'updateStatus']);
+    Route::post('/my-account/order/updateOrderStatus', [App\Http\Controllers\Customer\AccountController::class, 'updateOrderStatus']);
 
     
 });

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Services\Category\CategoryService;
 use App\Http\Services\Account\AccountService;
+use App\Http\Services\Checkout\CheckoutService;
 use App\Models\Order;
 use Auth;
 
@@ -13,10 +14,13 @@ class AccountController extends Controller
 {
     protected $categoryService;
     protected $accountService;
+    protected $checkoutService;
 
-    public function __construct(CategoryService $categoryService, AccountService $accountService){
+    public function __construct(CategoryService $categoryService, AccountService $accountService,
+                                CheckoutService $checkoutService){
         $this->categoryService = $categoryService;
         $this->accountService = $accountService;
+        $this->checkoutService = $checkoutService;
     }
         
     public function index(){
@@ -39,13 +43,7 @@ class AccountController extends Controller
         return view('customer.main.order', compact('categories','orders'));
     }
 
-    public function updateStatus(Request $request){
-        if($request->ajax()){
-            $order = Order::find($request->order_id);
-            $order->status = $request->status;
-            $order->save();
-
-            return true;
-        }
+    public function updateOrderStatus(Request $request){
+        $this->accountService->updateOrderStatus($request);
     }
 }

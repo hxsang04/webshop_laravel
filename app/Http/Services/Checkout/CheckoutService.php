@@ -64,7 +64,7 @@ class CheckoutService{
             $productDetail->save();
             
             $product = Product::find($productDetail->product_id);
-            $this->updateQtyAndSold($product->id, $cartItem->quantity);
+            Product::updateQty($product->id);
 
             //xóa item trong giỏ hàng
             $cartItem->delete();
@@ -95,14 +95,6 @@ class CheckoutService{
                 return Order::where('id',$vnp_TxnRef)->delete();
             }
         }
-    }
-
-    private function updateQtyAndSold($product_id, $quantity){
-        $product = Product::find($product_id);
-        $totalQuantity = array_sum(array_column($product->productDetail->toArray(), 'quantity' ));
-        $product->quantity = $totalQuantity;
-        $product->sold += $quantity;
-        $product->save();
     }
 
     public function sendMail($order){

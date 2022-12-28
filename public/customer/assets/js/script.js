@@ -493,7 +493,7 @@ function updateStatus(order_id, status){
 
   $.ajax({
     type: 'POST',
-    url: '/my-account/order/updateStatus',
+    url: '/my-account/order/updateOrderStatus',
     data: {order_id:order_id, status:status},
     success:function(result){
       const orderRow = $('#ord-'+ order_id)

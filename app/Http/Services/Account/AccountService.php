@@ -3,6 +3,8 @@
 namespace App\Http\Services\Account;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
 use Str;
 use Auth;
 
@@ -30,5 +32,28 @@ class AccountService{
         $user->save();
 
         return true;
+    }
+
+    public function updateOrderStatus($request){
+        if($request->ajax()){
+            $order = Order::find($request->order_id);
+            $order->status = $request->status;   
+            $order->save();
+
+            foreach ($order->orderDetails as $orderDetail){
+                if($request->status == 3 or $request->status == 4){
+                    $orderDetail->productDetail->quantity += $orderDetail->quantity;
+                    $orderDetail->productDetail->save();
+
+                    Product::updateQty($orderDetail->productDetail->product_id);
+                }
+                else{
+                    $product = $orderDetail->productDetail->product;
+                    $product->sold += $orderDetail->quantity;
+                    $product->save();
+                }
+            };
+
+        }
     }
 }

@@ -30,6 +30,13 @@ class Product extends Model
 
     ];
 
+    public function updateQty($product_id){
+        $product = Product::find($product_id);
+        $totalQuantity = array_sum(array_column($product->productDetail->toArray(), 'quantity' ));
+        $product->quantity = $totalQuantity;
+        $product->save();
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');

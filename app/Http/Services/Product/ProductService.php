@@ -76,10 +76,8 @@ class ProductService{
         return Product::Find($product_id);
     }
 
-    public function updateQuantity( $data ,$product_id){
-        $product = $this->find($product_id);
-        $product->quantity = $data;
-        $product->save();
+    public function updateQuantity($product_id){
+        Product::updateQty($product_id);
     }
 
     public function getProductBySlug($slug){
