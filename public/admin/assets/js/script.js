@@ -238,4 +238,4 @@ function createNotify(status,title){
     })
   }
 
- 
+ // Create chart

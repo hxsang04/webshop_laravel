@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProductDetailController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\StatisticController;
 
 
 
@@ -89,6 +90,9 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
     
     // Home
     Route::get('home', [HomeController::class, 'index'])->name('home');
+
+    //Statistic
+    Route::get('/statistic', [StatisticController::class, 'index']);
 
     // Product
     Route::prefix('product')->group(function () {

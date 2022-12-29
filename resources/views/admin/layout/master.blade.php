@@ -25,10 +25,10 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{(request()->segment(2) == 'revenue') ? 'hovered' : ''}}">
-                        <a href="./admin/revenue">
-                            <span class="icon"><ion-icon name="wallet-outline"></ion-icon></span>
-                            <span class="title">Revenue</span>
+                    <li class="{{(request()->segment(2) == 'statistic') ? 'hovered' : ''}}">
+                        <a href="./admin/statistic">
+                            <span class="icon"><ion-icon name="bar-chart-outline"></ion-icon></span>
+                            <span class="title">Statistics</span>
                         </a>
                     </li>
                     <li class="{{(request()->segment(2) == 'category') ? 'hovered' : ''}}">
@@ -122,13 +122,14 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
-    <script src="admin/assets/js/ckeditor.js"></script>
     <script src="admin/assets/js/bootstrap.min.js"></script>
     <script src="admin/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="admin/assets/js/chart.umd.min.js"></script>
+    <script src="admin/assets/js/ckeditor.js"></script>
     <script src="admin/assets/js/script.js"></script>
     <script>
         ClassicEditor
-            .create( document.querySelector( '#description' ) )
+            .create(document.querySelector( '#description' ) )
             .catch( error => {
                 console.error( error );
             } );
