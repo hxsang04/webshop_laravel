@@ -7,11 +7,11 @@
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="numbers">1,504</div>
-                    <div class="cardName">Daily Views</div>
+                    <div class="numbers">{{$count['product']}}</div>
+                    <div class="cardName">Products</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <ion-icon name="file-tray-stacked-outline"></ion-icon>
                 </div>
             </div>
             <div class="card">
@@ -29,7 +29,7 @@
                     <div class="cardName">Orders</div>
                 </div>
                 <div class="iconBx">
-                    <ion-icon name="cart-outline"></ion-icon>
+                    <ion-icon name="document-text-outline"></ion-icon>   
                 </div>
             </div>
             <div class="card">
