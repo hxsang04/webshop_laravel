@@ -93,6 +93,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
 
     //Statistic
     Route::get('/statistic', [StatisticController::class, 'index']);
+    Route::post('/statistic', [StatisticController::class, 'show']);
 
     // Product
     Route::prefix('product')->group(function () {
@@ -157,6 +158,8 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
     // Profile
     Route::get('profile', [ProfileController::class, 'index']);
     Route::post('profile', [ProfileController::class, 'update']);
+    Route::get('password', [ProfileController::class, 'changePassword']);
+    Route::post('password', [ProfileController::class, 'changePasswordPost']);
 
     Route::get('403', function() {
         return view('admin.403');

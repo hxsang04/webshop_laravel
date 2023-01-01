@@ -8,14 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view('admin.profile.index');
     }
 
-    public function update(Request $request)
-    {
+    public function update(Request $request){
         Auth::user()->fill($request->all())->save();
         return redirect()->back()->with('success','SUCCESS: Your profile has been updated!');
+    }
+
+    public function changePassword(){
+        return view('admin.profile.changePassword');
+    }
+
+    public function changePasswordPost(Request $request){
+        dd($request->all());
     }
 }

@@ -25,7 +25,7 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{(request()->segment(2) == 'statistic') ? 'hovered' : ''}}">
+                    <li class="{{(request()->segment(2) == 'statistic') ? 'hovered' : ''}}" id="statistic">
                         <a href="./admin/statistic">
                             <span class="icon"><ion-icon name="bar-chart-outline"></ion-icon></span>
                             <span class="title">Statistics</span>
@@ -124,7 +124,6 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script src="admin/assets/js/bootstrap.min.js"></script>
     <script src="admin/assets/js/jquery-3.6.1.min.js"></script>
-    <script src="admin/assets/js/chart.umd.min.js"></script>
     <script src="admin/assets/js/ckeditor.js"></script>
     <script src="admin/assets/js/script.js"></script>
     <script>

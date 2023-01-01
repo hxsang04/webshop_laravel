@@ -102,7 +102,7 @@ class CheckoutService{
 
         Mail::send('customer.main.sendmail', compact('order'), function ($message) use($email_to) {
             $message->from(env('MAIL_USERNAME'), 'Stable eShop');
-            $message->to($email_to, $email_to);
+            $message->to($email_to);
             $message->subject('Order Notification');
         });
     }
