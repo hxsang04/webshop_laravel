@@ -22,6 +22,6 @@ class ProfileController extends Controller
     }
 
     public function changePasswordPost(Request $request){
-        dd($request->all());
+
     }
 }

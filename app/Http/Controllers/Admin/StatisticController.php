@@ -33,10 +33,14 @@ class StatisticController extends Controller
         }
 
         $dataRevenue = DB::table('orders')->whereBetWeen('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
-                ->select( DB::raw('MONTH(created_at )'), DB::raw('SUM(total_price) as total_price'))
+                ->select(DB::raw('SUM(total_price) as total_price'))
                 ->where('status', 2)
                 ->groupBy(DB::raw('MONTH(created_at )'))
                 ->get();
+        $barCharData['revenue'] = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach($dataRevenue as $index => $val){
+            $barCharData['revenue'][$index] = $val->total_price;
+        }
         return view ('admin.statistic.index', compact('barCharData','pieChartData'));
     }
 

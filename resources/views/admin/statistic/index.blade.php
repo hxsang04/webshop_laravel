@@ -25,6 +25,11 @@
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>Revenue</h2>
+                <select name="" id="">
+                    <option value="<?php echo date("Y"); ?>"><?php echo date("Y"); ?></option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
             </div>
             <div>
                 <canvas id="chartRevenue"></canvas>
@@ -32,7 +37,7 @@
         </div>
         <div class="recentOrders ">
             <div class="cardHeader">
-                <h2>Order Statistics</h2>
+                <h2>Summary</h2>
             </div>
             <div>
                 <canvas id=""></canvas>
@@ -49,7 +54,7 @@
         // Bar chart Sale
         createBarChar(document.querySelector('#chartSales'), allDays, 'Orders', dataSales)
         const month = ['Jan', 'Feb', 'Mar', 'Apr','May','Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        const revenue = [76.00, 242.00, 424.00, 441.00, 121.00]
+        const revenue = <?php echo json_encode($barCharData['revenue']) ?>
         //Bar chart Revenue
         createBarChar(document.querySelector('#chartRevenue'), month, 'USD', revenue)
 
