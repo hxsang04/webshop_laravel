@@ -24,16 +24,10 @@
                     </ul>
                 </div>
             @endif
-
-            @if(session('errorlogin'))
-                <div class="alert alert-danger" role="alert">
-                    <strong> {{ session('errorlogin') }}</strong>
-                </div>
-            @endif
-
                 <div class="account-login-header">
                     <h2 class="text-center">Login</h2>
                 </div>
+                @include('admin.component.alert')
                 <div class="account-login-inner">
                     <input class="account-login-input" name="email" placeholder="Email Addres" type="email">
                     <input class="account-login-input" name="password" placeholder="Password" type="password">

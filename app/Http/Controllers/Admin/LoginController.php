@@ -26,14 +26,15 @@ class LoginController extends Controller
 
         if( Auth::attempt([
             'email' => $email, 
-            'password' => $password
+            'password' => $password,
+            'level' => [0,1]
         ])){
             $user = User::where('email', $email)->first();
             Auth::login($user);
             return redirect('admin/home'); 
         }
 
-        return back()->with('errorlogin','ERORR: Incorrect email address or password');
+        return back()->with('error','ERORR: Incorrect email address or password');
     }
 
     public function logout(Request $request)
