@@ -16,8 +16,9 @@
             <div class="cardHeader">
                 <h2>Order Statistics</h2>
             </div>
-            <div>
-                <canvas id="pieChart"></canvas>
+            <div class="text-center">
+                <canvas style="padding: 20px" id="pieChart"></canvas>
+                <strong>Total: {{ array_sum($pieChartData)}} orders</strong>
             </div>
         </div>
     </div>
@@ -25,11 +26,13 @@
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>Revenue</h2>
-                <select name="" id="">
-                    <option value="<?php echo date("Y"); ?>"><?php echo date("Y"); ?></option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                </select>
+                <form action="/admin/statistic">
+                    <select name="year" id="year" onchange="this.form.submit();">
+                        <option {{request('year') == date("Y") ? 'selected' : '' }}  value=" {{date("Y")}}">{{date("Y")}}</option>
+                        <option {{request('year') == date("Y")-1 ? 'selected' : '' }} value="{{date("Y")-1}}">{{date("Y")-1}}</option>
+                        <option {{request('year') == date("Y")-2 ? 'selected' : '' }} value="{{date("Y")-2}}">{{date("Y")-2}}</option>
+                    </select>   
+                </form>
             </div>
             <div>
                 <canvas id="chartRevenue"></canvas>
@@ -49,10 +52,11 @@
     <script>
 
         const today = new Date();
-        const allDays = getAllDaysInMonth(today.getFullYear(), today.getMonth());
+        // const allDays = getAllDaysInMonth(today.getFullYear(), today.getMonth());
         const dataSales = <?php echo json_encode($barCharData['orders']) ?>;
+        const dates = <?php echo json_encode($barCharData['date']) ?>
         // Bar chart Sale
-        createBarChar(document.querySelector('#chartSales'), allDays, 'Orders', dataSales)
+        createBarChar(document.querySelector('#chartSales'), dates, 'Orders', dataSales)
         const month = ['Jan', 'Feb', 'Mar', 'Apr','May','Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         const revenue = <?php echo json_encode($barCharData['revenue']) ?>
         //Bar chart Revenue

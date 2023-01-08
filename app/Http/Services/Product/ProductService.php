@@ -142,10 +142,10 @@ class ProductService{
                 $products = $products->orderByDesc('productname');
                 break;
             case 'price-ascending':
-                $products = $products->orderBy('price');
+                $products = $products->orderBy('price_sale');
                 break;
             case 'price-desending':
-                $products = $products->orderByDesc('price');
+                $products = $products->orderByDesc('price_sale');
                 break;
             default: $products = $products->orderByDesc('id');
         }

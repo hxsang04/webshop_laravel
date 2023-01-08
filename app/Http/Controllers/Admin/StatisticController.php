@@ -10,12 +10,14 @@ use App\Models\Order;
 
 class StatisticController extends Controller
 {
-    public function index(){
-        $result = DB::table('orders')->whereBetWeen('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])
+    public function index(Request $request){
+        $result = DB::table('orders')->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))
                 ->select( DB::raw('CAST(created_at as date) as date'), DB::raw('COUNT(*) as orders'),
                           DB::raw('SUM(total_price) as total_price'))
                 ->groupBy(DB::raw('CAST(created_at as date)'))
                 ->get();
+
         $barCharData['date'] = array();
         $barCharData['orders'] = array();
         foreach($result as $val){
@@ -32,16 +34,24 @@ class StatisticController extends Controller
             array_push($pieChartData, $val->orders);
         }
 
-        $dataRevenue = DB::table('orders')->whereBetWeen('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])
-                ->select(DB::raw('SUM(total_price) as total_price'))
+        $year = $request->year ?? date("Y");
+        
+        $dataRevenue = DB::table('orders')->whereYear('created_at', $year)
+                ->select(DB::raw('Month(created_at) as month'), DB::raw('SUM(total_price) as total_price'))
                 ->where('status', 2)
                 ->groupBy(DB::raw('MONTH(created_at )'))
                 ->get();
         $barCharData['revenue'] = array(0,0,0,0,0,0,0,0,0,0,0,0);
-        foreach($dataRevenue as $index => $val){
-            $barCharData['revenue'][$index] = $val->total_price;
+        foreach($dataRevenue as $val){
+            for($i = 0; $i<12; $i++){
+                if($val->month -1 == $i){
+                    $barCharData['revenue'][$i] = $val->total_price;
+                }
+            }
         }
         return view ('admin.statistic.index', compact('barCharData','pieChartData'));
     }
+
+
 
 }

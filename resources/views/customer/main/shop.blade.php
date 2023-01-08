@@ -22,10 +22,10 @@
     </section>
     <section class="shop-section section-padding">
         <div class="my-container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4">
-                    <div class="shop-sidebar-widget">
-                        <form action="{{ request()->segment(2) == 'product' ? 'shop' : '' }}">
+            <form action="shop">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="shop-sidebar-widget">
                             <div class="single-widget widget-bg">
                                 <h2 class="wiget-title">Categories</h2>
                                 <ul class="widget-categories-menu">
@@ -186,13 +186,11 @@
                                 @endforeach
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xl-9 col-lg-8">
-                    <div class="shop-product-wrapper">
-                        <div class="shop-product-header d-flex justify-content-between align-items-center">
-                            <form action="shop">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="shop-product-wrapper">
+                            <div class="shop-product-header d-flex justify-content-between align-items-center">
                                 <div class="product-view-mode d-flex align-items-center">
                                     <label class="product-view-label">Sort by :</label>
                                     <div class="select shop-product-header-select mr-30">
@@ -214,22 +212,22 @@
                                         </select>
                                     </div>
                                 </div>
-                            </form>
-                            <p class="product-showing-count">Showing 1–9 of 21 results</p>
-                        </div>
-                        <div class="shop-product-main">
-                            <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-2 mb--30">
-                              @foreach($products as $product)
-                                <div class="col mb-30">
-                                    @include('customer.component.product_items')
-                                </div>
-                                @endforeach
+                                <p class="product-showing-count">Showing 1–9 of 21 results</p>
                             </div>
+                            <div class="shop-product-main">
+                                <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-2 mb--30">
+                                @foreach($products as $product)
+                                    <div class="col mb-30">
+                                        @include('customer.component.product_items')
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            {{ $products->links() }}
                         </div>
-                        {{ $products->links() }}
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 

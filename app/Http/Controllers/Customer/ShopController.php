@@ -36,7 +36,8 @@ class ShopController extends Controller
         $categories = $this->categoryService->getParent();
         $brands = $this->brandService->getAll();
         $products = $this->productService->getProductByCategory($category_slug, $request);
-        return view('customer.main.shop', compact('categories','products','brands'));
+        $topViewedProducts = Product::orderByDesc('view_count')->limit(3)->get();
+        return view('customer.main.shop', compact('categories','products','brands','topViewedProducts'));
     }
 
     public function showProductDetail($product_slug){
