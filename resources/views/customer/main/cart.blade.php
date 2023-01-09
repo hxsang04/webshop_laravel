@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="cart-table">
-                                @if(count($carts) != 0)
+                                @if(count($cartItems) != 0)
                                 <table class="cart-table-inner">
                                     <thead>
                                         <tr>
@@ -27,7 +27,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($carts as $cartItem)
+                                    @foreach($cartItems as $cartItem)
                                         <tr class="cartItem_id-{{ $cartItem->id }}">
                                             <td>
                                                 <div class="cart-product d-flex align-items-center">
@@ -143,17 +143,18 @@
                                     <div class="cart-summary-total-list">
                                         <span>Subtotal</span>
                                         <?php $subTotal = 0;
-                                            foreach($carts as $cart){
+                                            foreach($cartItems as $cartItem){
                                                 $subTotal += ($cartItem->quantity * $cartItem->productDetail->product->price_sale);
                                             }
                                             echo '<span class="subTotal">$'.number_format($subTotal,2).'</span>';
-                                            $count_cart = count($carts)
+                                            $count_cart = count($cartItems);
+                                            $total = $subTotal
                                         ?>
                                         
                                     </div>
                                     <div class="cart-summary-total-list ">
                                         <span>Grand total</span>
-                                        <span class="grandTotal">${{ number_format($subTotal , 2) }}</span>
+                                        <span class="grandTotal">${{ number_format($total , 2) }}</span>
                                     </div>
                                 </div>
                                 <div class="cart-summary-footer">

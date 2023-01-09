@@ -64,30 +64,30 @@
                         <div class="order-total">
                             <ul class="order-table">
                                 <li class=" text-uppercase">Product <span>Total</span></li>
-                                @foreach($carts as $cart)
+                                @foreach($cartItems as $cartItem)
                                 <li class="fw-normal">
                                     <div hret class="d-flex align-items-center">
                                         <div class="product-thumbnail_checkout">
-                                            <a href="/{{ $cart->productDetail->product->slug }}.html">
-                                                <img src="/{{ $cart->productDetail->colorImg_1 }}" alt="{{ $cart->productDetail->product->productname }}">
+                                            <a href="/{{ $cartItem->productDetail->product->slug }}.html">
+                                                <img src="/{{ $cartItem->productDetail->colorImg_1 }}" alt="{{ $cartItem->productDetail->product->productname }}">
                                             </a>
-                                            <span>{{$cart->quantity}}</span>
+                                            <span>{{$cartItem->quantity}}</span>
                                         </div>
                                         <div class="product-detail_checkout">
-                                            <a href="/{{$cart->productDetail->product->slug }}.html">{{ $cart->productDetail->product->productname }}</a>
+                                            <a href="/{{$cartItem->productDetail->product->slug }}.html">{{ $cartItem->productDetail->product->productname }}</a>
                                             <div class="d-flex">
-                                                <p>Color: {{$cart->productDetail->color}}</p>
-                                                <p style="margin-left: 10px">Size: {{$cart->productDetail->size}} </p>
+                                                <p>Color: {{$cartItem->productDetail->color}}</p>
+                                                <p style="margin-left: 10px">Size: {{$cartItem->productDetail->size}} </p>
                                             </div>
                                         </div>
                                     </div>
-                                    <span>${{ number_format($cart->quantity * $cart->productDetail->product->price_sale, 2) }}</span>
+                                    <span>${{ number_format($cartItem->quantity * $cartItem->productDetail->product->price_sale, 2) }}</span>
                                 </li>
                                 @endforeach
                                 <?php
                                     $subTotal = 0;
-                                    foreach($carts as $cart){
-                                        $subTotal += ($cart->quantity * $cart->productDetail->product->price_sale);
+                                    foreach($cartItems as $cartItem){
+                                        $subTotal += ($cartItem->quantity * $cartItem->productDetail->product->price_sale);
                                     }
                                     $total = $subTotal;
                                 ?>

@@ -26,9 +26,9 @@ class CartController extends Controller
     public function view(){
         $categories = $this->categoryService->getParent();
         $productBestSolds = $this->cartService->getProductBestSold();
-        $carts = $this->cartService->view();
+        $cartItems = $this->cartService->view();
         
-        return view('customer.main.cart', compact('carts', 'categories','productBestSolds'));
+        return view('customer.main.cart', compact('cartItems', 'categories','productBestSolds'));
     }
 
     public function addCart(Request $request){
@@ -38,13 +38,13 @@ class CartController extends Controller
 
     public function removeCart(Request $request){
 
-        $result =  $this->cartService->removeCart($request);
+        $result = $this->cartService->removeCart($request);
         return $result;
     }
 
     public function updateCart(Request $request){
 
-        $result =  $this->cartService->updateCart($request);
+        $result = $this->cartService->updateCart($request);
         return $result;
     }
 

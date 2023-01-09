@@ -39,6 +39,7 @@ class ProfileController extends Controller
         ])){
             Auth::user()->password = Hash::make($request->input('password'));
             Auth::user()->save();
+            Auth::logout();
             return redirect()->route('login')->with('success', 'SUCCESS: Your password changed successfully');
         }
         else{

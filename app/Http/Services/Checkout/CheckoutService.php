@@ -23,7 +23,7 @@ class CheckoutService{
         if($data['payment'] == 'cod'){       
             $this->addOrderDetail($order->id);
             $this->sendMail($order);
-            return 0;
+            return true;
         }
 
         //Thanh toán VNPay

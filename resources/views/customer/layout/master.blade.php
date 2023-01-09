@@ -37,7 +37,7 @@
                 <img style="border-radius: 50%; height: 25px; width: 25px;" class="language-currency-list-icon" src="/{{Auth::user()->avatar ?? 'storage/uploads/user/no_avatar.png'}}"
                   alt="{{Auth::user()->fullname}}" />{{Auth::user()->fullname}}
               </a>
-              <form action="logout" method="POST">
+              <form action="/logout" method="POST">
                 @csrf
                 <button style="background: none" type="submit" class="language-currency-list text-white border-left">Log Out</button>
               </form>

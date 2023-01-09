@@ -25,9 +25,9 @@ class CheckoutController extends Controller
     public function index(){
 
         $categories = $this->categoryService->getParent();
-        $carts = $this->cartService->view();
-        if(count($carts) != 0){
-            return view('customer.main.checkout', compact('categories', 'carts'));
+        $cartItems = $this->cartService->view();
+        if(count($cartItems) != 0){
+            return view('customer.main.checkout', compact('categories', 'cartItems'));
         }
         else{
             return back();
@@ -39,7 +39,7 @@ class CheckoutController extends Controller
         $result = $this->checkoutService->addOrder($request);
 
         // Payment Method - COD
-        if($result == 0){
+        if($result == true){
             return redirect('checkout/noti')->with('notification', 'We received your purchase request. Please check your email!' );
         }
         
