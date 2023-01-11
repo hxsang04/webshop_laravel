@@ -26,4 +26,15 @@ class MainController extends Controller
         return view('customer.main.index', compact('categories', 'products', 'productBestSolds'));
     }
 
+    public function aboutUs(){
+        $categories = $this->categoryService->getParent();
+        return view('customer.main.aboutus', compact('categories'));
+    }
+
+    public function contact(){
+        $categories = $this->categoryService->getParent();
+        return view('customer.main.contact', compact('categories'));
+    }
+
+
 }

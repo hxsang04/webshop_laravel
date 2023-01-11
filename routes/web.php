@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\StatisticController;
 // Customer UI
 
 Route::get('', [App\Http\Controllers\Customer\MainController::class, 'index']);
+Route::get('/aboutus', [App\Http\Controllers\Customer\MainController::class, 'aboutUs']);
+Route::get('/contact', [App\Http\Controllers\Customer\MainController::class, 'contact']);
 Route::get('/shop', [App\Http\Controllers\Customer\ShopController::class, 'index']);
 // Get ProudctDetail
 Route::get('/{slug}.html', [App\Http\Controllers\Customer\ShopController::class, 'showProductDetail']);

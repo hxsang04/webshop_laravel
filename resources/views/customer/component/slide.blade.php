@@ -39,10 +39,10 @@
         <div class="row mb--28">
           <div class="col-5 mb-28">
             <div class="banner-items">
-              <a href="#" class="banner-items-thumbnail position-relative">
+              <a href="/shop" class="banner-items-thumbnail position-relative">
                 <img alt="" src="./customer/assets/img/banner1.png" />
                 <div class="banner-items-content position-absolute">
-                  <span class="banner-items-content-subtitle">17% Discount</span>
+                  <span class="banner-items-content-subtitle">25% Discount</span>
                   <h2 class="banner-items-content-title">
                     Spring Collection
                     <br />
@@ -63,10 +63,10 @@
             <div class="row">
               <div class="col-6 mb-28">
                 <div class="banner-items">
-                  <a href="#" class="banner-items-thumbnail position-relative">
+                  <a href="/shop" class="banner-items-thumbnail position-relative">
                     <img alt="" src="./customer/assets/img/banner2.png" />
                     <div class="banner-items-content position-absolute">
-                      <span class="banner-items-content-subtitle">17% Discount</span>
+                      <span class="banner-items-content-subtitle">25% Discount</span>
                       <h2 class="banner-items-content-title">
                         Spring Collection
                         <br />
@@ -85,10 +85,10 @@
               </div>
               <div class="col-6 mb-28">
                 <div class="banner-items">
-                  <a href="#" class="banner-items-thumbnail position-relative">
+                  <a href="/shop" class="banner-items-thumbnail position-relative">
                     <img alt="" src="./customer/assets/img/banner3.png" />
                     <div class="banner-items-content position-absolute">
-                      <span class="banner-items-content-subtitle">17% Discount</span>
+                      <span class="banner-items-content-subtitle">25% Discount</span>
                       <h2 class="banner-items-content-title">
                         Spring Collection
                         <br />
@@ -106,10 +106,10 @@
                 </div>
               </div>
               <div class="banner-items">
-                <a href="#" class="banner-items-thumbnail position-relative">
+                <a href="/shop" class="banner-items-thumbnail position-relative">
                   <img alt="" src="./customer/assets/img/banner4.png" />
                   <div class="banner-items-content position-absolute">
-                    <span class="banner-items-content-subtitle">17% Discount</span>
+                    <span class="banner-items-content-subtitle">25% Discount</span>
                     <h2 class="banner-items-content-title">
                       Spring Collection
                       <br />

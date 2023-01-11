@@ -26,7 +26,7 @@
                 <img class="header-shipping-text-icon" src="/customer/assets/img/bus.png" alt="bus-icon" />Track Your Order
               </div>
               <div class="header-shipping-text text-white border-left">
-                <img class="header-shipping-text-icon" src="/customer/assets/img/email.png" alt="email-icon" />Stablefashion@gmail.com
+                <img class="header-shipping-text-icon" src="/customer/assets/img/email.png" alt="email-icon" />stablefashion@gmail.com
               </div>
             </div>
           </div>
@@ -185,10 +185,10 @@
                 <a class="header-menu-link" href="blog.html">Blog</a>
               </li>
               <li class="header-menu-items">
-                <a class="header-menu-link" href="aboutus.html">About US</a>
+                <a class="header-menu-link" href="/aboutus">About US</a>
               </li>
               <li class="header-menu-items">
-                <a class="header-menu-link" href="contact.html">Contact</a>
+                <a class="header-menu-link" href="/contact">Contact</a>
               </li>
             </div>
           </div>

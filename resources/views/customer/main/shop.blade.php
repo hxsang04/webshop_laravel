@@ -212,7 +212,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <p class="product-showing-count">Showing 1–9 of 21 results</p>
+                                <p class="product-showing-count"></p>
                             </div>
                             <div class="shop-product-main">
                                 <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-2 mb--30">
