@@ -37,22 +37,27 @@ class CartService{
                     
                 if($product_check)
                 {
-                    $cartItem = CartItem::where('product_detail_id', $productDetail->id)
-                            ->where('cart_id', $cart_id);
-                    if($cartItem->exists())
-                    {
-                        $cartItem = $cartItem->first();
-    
-                        $cartItem->quantity += $data['quantity'];
-                        $cartItem->save();
+                    if($data['quantity'] > $productDetail->quantity){
+                        return 'error';
                     }
-                    else
-                    {
-                        $data['product_detail_id'] = $productDetail->id;
-                        $data['quantity'] = $data['quantity'];
-                        $data['cart_id'] = $cart_id;
-                        CartItem::create($data);
-                    }   
+                    else{
+                        $cartItem = CartItem::where('product_detail_id', $productDetail->id)
+                                        ->where('cart_id', $cart_id);
+                        if($cartItem->exists())
+                        {
+                            $cartItem = $cartItem->first();
+        
+                            $cartItem->quantity += $data['quantity'];
+                            $cartItem->save();
+                        }
+                        else
+                        {
+                            $data['product_detail_id'] = $productDetail->id;
+                            $data['quantity'] = $data['quantity'];
+                            $data['cart_id'] = $cart_id;
+                            CartItem::create($data);
+                        }   
+                    }
     
                 }
     
@@ -84,22 +89,32 @@ class CartService{
     public function updateCart($request){
         if($request->ajax()){
 
-            $cartItem = CartItem::where("id", $request->cartItem_id);
-            if($request->quantity == 0){
-                $cartItem->delete();
+            $cartItem = CartItem::find($request->cartItem_id);
+
+            if($request->quantity > $cartItem->productDetail->quantity){
+                return false;
             }
             else{
-                $cartItem->update(["quantity" => $request->quantity]);
-                $result['price'] = $cartItem->first()->productDetail->product->price_sale;
-            }
-            $cartItems = Auth::user()->cart->cartItems;
-            $result['count'] = count($cartItems);
-            $result['subTotal'] = 0;
-            foreach ($cartItems as $cartItem){
-                $result['subTotal'] += ($cartItem->productDetail->product->price_sale * $cartItem->quantity);
+
+                if($request->quantity == 0){
+                    $cartItem->delete();
+                }
+                else{
+                    $cartItem->update(["quantity" => $request->quantity]);
+                    $result['price'] = $cartItem->first()->productDetail->product->price_sale;
+                }
+
+                $cartItems = Auth::user()->cart->cartItems;
+                $result['count'] = count($cartItems);
+                $result['subTotal'] = 0;
+
+                foreach ($cartItems as $cartItem){
+                    $result['subTotal'] += ($cartItem->productDetail->product->price_sale * $cartItem->quantity);
+                }
+    
+                return $result;
             }
 
-            return $result;
         }
     }
 

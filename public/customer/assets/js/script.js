@@ -265,6 +265,9 @@ $(document).ready( function(){
         if(result == false){
           window.location.href = "/login"
         }
+        else if(result == 'error'){
+          createNotify('error','Exceeded the number of products!');
+        }
         else{
           $('.mycart').text(result)
           createNotify('success','Product added to cart');
@@ -362,22 +365,28 @@ function updateCart(cartItem_id, quantity){
     data: {cartItem_id:cartItem_id, quantity:quantity},
     success:function(result){
 
-      var cart_tbody = $('.cart-table-inner tbody')
-      var cart_exist = cart_tbody.find(".cartItem_id-" + cartItem_id)
-
-      if(quantity == 0){
-        cart_exist.remove();
+      const cart_tbody = $('.cart-table-inner tbody')
+      const cart_exist = cart_tbody.find(".cartItem_id-" + cartItem_id)
+      
+      if(result == false){
+        $('.quantity-number').val(quantity-1);
+        createNotify('error','Exceeded the number of products!')
       }
       else{
-        cart_exist.find('.cart-price.end').text('$' + (result['price'] * quantity).toFixed(2))
-      }
-      
-      $('.mycart').text(result['count'])
-      $('.cart-summary-footer-btn.checkout').attr('data-qty', result['count']) 
-      $('.subTotal').text('$' + result['subTotal'].toFixed(2))
-      $('.grandTotal').text('$' + result['subTotal'].toFixed(2))
+        if(quantity == 0){
+          cart_exist.remove();
+        }
+        else{
+          cart_exist.find('.cart-price.end').text('$' + (result['price'] * quantity).toFixed(2))
+        }
         
-      createNotify('success','Cart updated successfully')
+        $('.mycart').text(result['count'])
+        $('.cart-summary-footer-btn.checkout').attr('data-qty', result['count']) 
+        $('.subTotal').text('$' + result['subTotal'].toFixed(2))
+        $('.grandTotal').text('$' + result['subTotal'].toFixed(2))
+          
+        createNotify('success','Cart updated successfully')
+      }
     }, error:function(){
       createNotify('error','Update cart failed');
     }

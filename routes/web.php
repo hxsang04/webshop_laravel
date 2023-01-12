@@ -80,7 +80,7 @@ Route::post('/reset-password/{token}', [App\Http\Controllers\Customer\ResetPassw
 
 
 
-// Dashboard (admin)
+//Admin Page
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -93,15 +93,11 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
     // Home
     Route::get('home', [HomeController::class, 'index'])->name('home');
 
-    //Statistic
-    Route::get('/statistic', [StatisticController::class, 'index']);
-    Route::post('/statistic', [StatisticController::class, 'show']);
-
     // Product
     Route::prefix('product')->group(function () {
         Route::get('', [ProductController::class, 'index']); 
         Route::get('create', [ProductController::class, 'create']); 
-        Route::post('store', [ProductController::class, 'store']); 
+        Route::post('store', [ProductController::class, 'store']);
         Route::get('edit/{product}', [ProductController::class, 'edit']); 
         Route::post('edit/{product}', [ProductController::class, 'update']); 
         Route::get('{product}', [ProductController::class, 'show']); 
@@ -118,7 +114,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
 
     // User
     Route::middleware(['adminRole'])->group(function () {
-        Route::get('user', [UserController::class, 'index']); 
+        Route::get('user', [UserController::class, 'index']);
         Route::get('user/create', [UserController::class, 'create']);
         Route::post('user/store', [UserController::class, 'store']);
         Route::get('user/{id}', [UserController::class, 'show']);
@@ -141,6 +137,9 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
             Route::post('edit/{category}', [CategoryController::class, 'update']); 
             Route::delete('delete/{id}', [CategoryController::class, 'destroy']); 
         });
+    //Statistic
+        Route::get('/statistic', [StatisticController::class, 'index']);
+        Route::post('/statistic', [StatisticController::class, 'show']);
     });
 
     // Order    
