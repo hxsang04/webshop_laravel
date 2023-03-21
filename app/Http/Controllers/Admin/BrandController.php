@@ -20,7 +20,7 @@ class BrandController extends Controller
 
         $brands = $this->brandService->getAll();
 
-        return view('admin.brand.view', compact('brand'));
+        return view('admin.brand.view', compact('brands'));
         
     }
 

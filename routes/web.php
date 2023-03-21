@@ -27,42 +27,39 @@ Route::get('/{slug}.html', [App\Http\Controllers\Customer\ShopController::class,
 Route::get('/{categroy_slug}.htm', [App\Http\Controllers\Customer\ShopController::class, 'showProductByCategory']);
 // Get Product Size
 Route::post('/get-size' , [App\Http\Controllers\Customer\ShopController::class, 'getSize']);
+Route::post('/buy-now' , [App\Http\Controllers\Customer\ShopController::class, 'buyNow']);
 
-Route::middleware(['auth'])->group(function () {
-    // Cart
-    Route::get('/cart', [App\Http\Controllers\Customer\CartController::class, 'view']);
-    Route::post('/remove-cart', [App\Http\Controllers\Customer\CartController::class, 'removeCart']);
-    Route::post('/update-cart', [App\Http\Controllers\Customer\CartController::class, 'updateCart']);
-    Route::post('/clear-cart', [App\Http\Controllers\Customer\CartController::class, 'clearCart']);
-    //Wishlist
-    Route::get('/wishlist', [App\Http\Controllers\Customer\WishListController::class, 'index']);
-    Route::post('/add-to-wishlist', [App\Http\Controllers\Customer\WishListController::class, 'addWishList']);
-    Route::post('/remove-wishlist', [App\Http\Controllers\Customer\WishListController::class, 'removeWishList']);
-    // CheckOut
-    Route::prefix('checkout')->group( function(){
-        Route::get('', [App\Http\Controllers\Customer\CheckoutController::class, 'index']);
-        Route::post('', [App\Http\Controllers\Customer\CheckoutController::class, 'addOrder']);
-        Route::get('/vnPayCheck', [App\Http\Controllers\Customer\CheckoutController::class, 'vnPayCheck']);
-        Route::get('/noti', [App\Http\Controllers\Customer\CheckoutController::class, 'noti']);
+// Cart
+Route::get('/cart', [App\Http\Controllers\Customer\CartController::class, 'view']);
+Route::post('/add-to-cart', [App\Http\Controllers\Customer\CartController::class, 'addCart']);
+Route::post('/remove-cart', [App\Http\Controllers\Customer\CartController::class, 'removeCart']);
+Route::post('/update-cart', [App\Http\Controllers\Customer\CartController::class, 'updateCart']);
+Route::post('/clear-cart', [App\Http\Controllers\Customer\CartController::class, 'clearCart']);
+//Wishlist
+Route::get('/wishlist', [App\Http\Controllers\Customer\WishListController::class, 'index']);
+Route::post('/add-to-wishlist', [App\Http\Controllers\Customer\WishListController::class, 'addWishList']);
+Route::post('/remove-wishlist', [App\Http\Controllers\Customer\WishListController::class, 'removeWishList']);
+// CheckOut
+Route::prefix('checkout')->group( function(){
+    Route::get('', [App\Http\Controllers\Customer\CheckoutController::class, 'index']);
+    Route::post('', [App\Http\Controllers\Customer\CheckoutController::class, 'addOrder']);
+    Route::get('/vnPayCheck', [App\Http\Controllers\Customer\CheckoutController::class, 'vnPayCheck']);
+    Route::get('/noti', [App\Http\Controllers\Customer\CheckoutController::class, 'noti']);
 
-    });
-    // My Account
-    Route::get('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'index']);
-    Route::post('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'update']);
-    Route::get('/my-account/order', [App\Http\Controllers\Customer\AccountController::class, 'orderHistory']);
-    Route::get('/my-account/order/{id}', [App\Http\Controllers\Customer\AccountController::class, 'orderDetail']);
-    Route::post('/my-account/order/updateOrderStatus', [App\Http\Controllers\Customer\AccountController::class, 'updateOrderStatus']);
+});
+// My Account
+Route::get('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'index']);
+Route::post('/my-account/profile', [App\Http\Controllers\Customer\AccountController::class, 'update']);
+Route::get('/my-account/order', [App\Http\Controllers\Customer\AccountController::class, 'orderHistory']);
+Route::get('/my-account/order/{id}', [App\Http\Controllers\Customer\AccountController::class, 'orderDetail']);
+Route::post('/my-account/order/updateOrderStatus', [App\Http\Controllers\Customer\AccountController::class, 'updateOrderStatus']);
 
     
-});
-
-//Test Paypal
+// Paypal
 Route::get('/create-transaction', [App\Http\Controllers\Customer\PaypalController::class, 'createTransaction']);
 Route::get('/process-transaction', [App\Http\Controllers\Customer\PaypalController::class, 'processTransaction']);
 Route::get('/success-transaction/{order_id}', [App\Http\Controllers\Customer\PaypalController::class, 'successTransaction']);
 Route::get('/cancel-transaction/{order_id}', [App\Http\Controllers\Customer\PaypalController::class, 'cancelTransaction']);
-
-Route::post('/add-to-cart', [App\Http\Controllers\Customer\CartController::class, 'addCart']);
 
 // Login
 Route::get('login', [App\Http\Controllers\Customer\LoginController::class, 'login']);
@@ -166,4 +163,8 @@ Route::group(['prefix'=> 'admin', 'middleware'=>'auth' ] , function () {
         return view('admin.403');
     });
 });
+
+// Route::get('test', function() {
+//     Artisan::call('storage:link');
+// });
 // Route::get('/customer-action', [CustomerController::class, 'action']);

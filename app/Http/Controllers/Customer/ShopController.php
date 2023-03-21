@@ -29,7 +29,7 @@ class ShopController extends Controller
         $products = $this->productService->getProductOnIndex($request);
         $brands = $this->brandService->getAll();
         $topViewedProducts = Product::orderByDesc('view_count')->limit(3)->get();
-        return view('customer.main.shop', compact('products','categories','brands','topViewedProducts'));
+        return view('customer.main.shop', compact('categories','products','brands','topViewedProducts'));
     }
 
     public function showProductByCategory($category_slug, Request $request){
@@ -55,7 +55,7 @@ class ShopController extends Controller
         //loại bỏ những phần tử trùng nhau trong mảng đa chiều
         $productDetails = array_map("unserialize", array_unique(array_map("serialize", $productDetails)));
         
-        return view('customer.main.product_detail', compact('categories', 'product','relatedProducts','productDetails'));
+        return view('customer.main.product_detail', compact( 'categories','product','relatedProducts','productDetails'));
     }
 
     public function getSize(Request $request){
@@ -69,5 +69,10 @@ class ShopController extends Controller
             return $productDetails;
         }
         
+    }
+
+    public function buyNow(Request $request){
+        $data = $request->all();
+        return 'Chức năng chưa hoàn thiện';
     }
 }

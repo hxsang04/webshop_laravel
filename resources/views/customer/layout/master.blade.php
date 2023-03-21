@@ -45,7 +45,7 @@
               <a href="login" class="language-currency-list text-white">Log In</a>
               <a href="register" class="language-currency-list text-white border-left">Register</a>
               @endif
-              
+               
             </div>
           </div>
         </div>
@@ -93,7 +93,11 @@
           <div class="header-account">
             <ul class="d-flex justify-content-end">
               <li class="header-account-item">
+                @if (Auth::check())
                 <a class="header-account-btn" href="/my-account/profile">
+                @else
+                <a class="header-account-btn" href="/login">
+                @endif
                   <svg xmlns="http://www.w3.org/2000/svg" width="26.51" height="23.443" viewBox="0 0 512 512">
                     <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z"
                       fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -106,7 +110,11 @@
                 </a>
               </li>
               <li class="header-account-item">
+                @if(Auth::check())
                 <a class="header-account-btn" href="/wishlist">
+                @else
+                <a class="header-account-btn" href="/login">
+                @endif
                   <svg xmlns="http://www.w3.org/2000/svg" width="28.51" height="23.443" viewBox="0 0 512 512">
                     <path
                       d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
@@ -121,7 +129,11 @@
                 </a>
               </li>
               <li class="header-account-item">
+                @if(Auth::check())
                 <a class="header-account-btn" href="/cart">
+                @else
+                <a class="header-account-btn" href="/login">
+                @endif
                   <svg xmlns="http://www.w3.org/2000/svg" width="26.51" height="23.443" viewBox="0 0 14.706 13.534">
                     <g transform="translate(0 0)">
                       <g>
@@ -182,7 +194,7 @@
               </li>
               @endforeach
               <li class="header-menu-items">
-                <a class="header-menu-link" href="blog.html">Blog</a>
+                <a class="header-menu-link" href="#">Blog</a>
               </li>
               <li class="header-menu-items">
                 <a class="header-menu-link" href="/aboutus">About US</a>
@@ -275,22 +287,22 @@
             <h2 class="footer-widget-title mb-30">My Account</h2>
             <ul class="footer-widget-menu">
               <li class="footer-widget-menu-list">
-                <a href="my-account.html">My Account</a>
+                <a href="/my-account/profile">My Account</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="cart.html">Shopping Cart</a>
+                <a href="/cart">Shopping Cart</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="login.html">Login</a>
+                <a href="/login">Login</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="login.html">Register</a>
+                <a href="/register">Register</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="checkout.html">Checkout</a>
+                <a href="/checkout">Checkout</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="wishlist.html">Wishlist</a>
+                <a href="/wishlist">Wishlist</a>
               </li>
             </ul>
           </div>
@@ -298,22 +310,22 @@
             <h2 class="footer-widget-title mb-30">Categories</h2>
             <ul class="footer-widget-menu">
               <li class="footer-widget-menu-list">
-                <a href="my-account.html">About Us</a>
+                <a href="/aboutus">About Us</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="cart.html">Contact Us</a>
+                <a href="/contact">Contact Us</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="login.html">Portfolio</a>
+                <a href="#">Portfolio</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="login.html">Privacy Policy</a>
+                <a href="#">Privacy Policy</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="checkout.html">Compare</a>
+                <a href="#">Compare</a>
               </li>
               <li class="footer-widget-menu-list">
-                <a href="wishlist.html">Frequently</a>
+                <a href="#">Frequently</a>
               </li>
             </ul>
           </div>

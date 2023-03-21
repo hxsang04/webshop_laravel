@@ -93,7 +93,7 @@
                     <tr>
                         <td width="60px">
                             <div class="imgBx">
-                                <img src=" {{$customer->avatar ?? 'storage/uploads/user/no_avatar.png'}}" >
+                                <img src=" {{ $customer->avatar ?? 'storage/uploads/user/no_avatar.png'}}" >
                             </div>
                         </td>
                         <td>
