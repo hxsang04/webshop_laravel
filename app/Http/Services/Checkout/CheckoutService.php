@@ -63,8 +63,7 @@ class CheckoutService{
             $productDetail->quantity -= $cartItem->quantity;
             $productDetail->save();
             
-            $product = Product::find($productDetail->product_id);
-            Product::updateQty($product->id);
+            Product::updateQty($productDetail->product_id);
 
             //xóa item trong giỏ hàng
             $cartItem->delete();
