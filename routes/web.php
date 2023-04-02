@@ -13,8 +13,6 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\StatisticController;
 
-
-
 // Customer UI
 
 Route::get('', [App\Http\Controllers\Customer\MainController::class, 'index']);
