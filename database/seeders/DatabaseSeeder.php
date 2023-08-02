@@ -15,20 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(10)->create();
-        // DB::table('brand')->insert([
-        //     [
-        //         'brandname'=> 'Admin',
-        //         'email' => 'admin@localhost.com',
-        //         'password' => Hash::make('123456'),
-        //         'gender' => 0,
-        //         'phonenumber' => '1234567890',
-        //         'address' => 'Vu Ban, Nam Dinh',
-        //         'avatar' => null,
-        //         'level' => 0,
-        //     ],
-
-        // ]);
-
+        
     }
 }

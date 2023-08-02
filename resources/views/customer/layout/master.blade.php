@@ -150,7 +150,7 @@
                     </g>
                   </svg>
                   <span class="header-account-btn-text">My Cart</span>
-                  @if(Auth::check())
+                  @if(Auth::check() && Auth::user()->level == 2)
                     <?php $carts = count(Auth::user()->cart->cartItems) ?>
                     <span class="items-count color-main text-white mycart"> {{$carts}} </span>
                   @endif
